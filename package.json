@@ -1,0 +1,23 @@
+{
+  "name": "wiktowice-tv-server",
+  "version": "1.0.0",
+  "description": "Prosty serwer Express dla kanału Wiktowice TV",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "express",
+    "wiktowice",
+    "tv",
+    "server",
+    "smykmc"
+  ],
+  "author": "KacperGam123",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

@@ -17,4 +17,5 @@ app.get("/tv", (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log("✅ Serwer działa na porcie 3000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Serwer działa na porcie ${PORT}`));

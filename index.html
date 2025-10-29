@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KJTeam Stream</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0a0a0a, #111);
+      color: white;
+      font-family: "Segoe UI", sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #0095ff;
+    }
+    video {
+      width: 80%;
+      max-width: 960px;
+      height: auto;
+      border: 3px solid #0095ff;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 149, 255, 0.4);
+      background: black;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎥 KJTeam — Live Stream</h1>
+  <video id="video" controls autoplay muted></video>
+
+  <footer>
+    Stream powered by FFmpeg + MonaServer + NetBird
+  </footer>
+
+  <!-- HLS.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById("video");
+    const videoSrc = "http://100.117.247.252:8080/test.m3u8"; // 🔹 Zmień na swój adres NetBird, np. http://10.20.30.40:8080/test.m3u8
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function() {
+        video.play();
+      });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = videoSrc;
+      video.addEventListener("loadedmetadata", function() {
+        video.play();
+      });
+    } else {
+      alert("Twoja przeglądarka nie obsługuje HLS 😞");
+    }
+  </script>
+</body>
+</html>
